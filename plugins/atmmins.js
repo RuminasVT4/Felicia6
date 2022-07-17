@@ -6,7 +6,7 @@ let handler = async (m, { conn, command, args }) => {
   if (global.db.data.users[m.sender].bank >= moneymins * count) {
     global.db.data.users[m.sender].bank -= moneymins * count
     global.db.data.users[m.sender].money += count
-    conn.reply(m.chat, `*「 WITHDRAWAL BALANCE 」*-${moneymins * count} ATM💵\n+ ${count} Money💵`, m)
+    conn.reply(m.chat, `*「 WITHDRAWAL BALANCE 」*\n\n-${moneymins * count} ATM💵\n+ ${count} Money💵`, m)
   } else conn.reply(m.chat, `*Saldo ATM Kamu Tersisah ${count}*`, m)
 }
 handler.help = ['pull <jumlah>', 'pullall']

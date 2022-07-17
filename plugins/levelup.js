@@ -3,7 +3,7 @@ let levelling = require('../lib/levelling')
 let handler = m => {
   let user = global.db.data.users[m.sender]
   if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
-    let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
+    let { min, xp, max, role } = levelling.xpRange(user.level, global.multiplier)
     throw `*「 LEVELING UP 」*\n
 Level *${user.level} (${user.exp - min}/${xp})*
 Kurang *${max - user.exp}* EXP Lagi\n\nTips:\n*Mainkan Game Ataupun RPG Untuk Mendapatkan EXP 
@@ -14,7 +14,7 @@ Kurang *${max - user.exp}* EXP Lagi\n\nTips:\n*Mainkan Game Ataupun RPG Untuk Me
 	if (before !== user.level) {
             m.reply(`*「 LEVELING UP 」*\n
 Selamat, Anda Telah Naik Level
-Dari Level *${before}* Ke Level *${user.level}*\n
+Dari Level *${before}* Ke Level *${user.level}*\n • Role ${role}
 Gunakan #profile Untuk Mengecek
 	`.trim())
         }

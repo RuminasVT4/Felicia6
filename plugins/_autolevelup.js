@@ -26,12 +26,14 @@ module.exports = {
 		let user = global.db.data.users[m.sender]
 		if (!user.autolevelup) return !0
 		let before = user.level * 1
+		let role = user.role
 		while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
 
 		if (before !== user.level) {
-			let chating = `*LEVEL UP*\n
-Level ${before} Ke Level ${user.level}\n
-Gunakan #profile Untuk Mengecek`.trim()
+			let chating = `*📊LEVEL UP*\n
+Level ${before} Ke Level ${user.level}\n • Role ${role}\n
+#topt - Untuk Mengecek Top Tier
+#profile - Untuk Mengecek Profile Anda`.trim()
 			m.reply(chating)
 			console.log(color(chating, 'pink'))
 		}

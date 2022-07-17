@@ -14,7 +14,7 @@ conn.role = global.db.data.users[m.sender]
     lawan = users[Math.floor(users.length * Math.random())]
   }
 
-  let lamaPertarungan = getRandom(5,15)
+  let lamaPertarungan = getRandom(5,14)
 
   m.reply(`*「 FIGHTING 」*\n\n*Kamu Level ${global.db.data.users[m.sender].level} ${global.db.data.users[m.sender].role} Menantang ${conn.getName(lawan)} Level ${global.db.data.users[lawan].level} ${global.db.data.users[lawan].role} Dan Sedang Dalam Pertarungan Sengit.*\n\n⏱️Tunggu ${lamaPertarungan} Menit Untuk Melihat Siapa Yang Menang`)
 
