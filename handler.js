@@ -28,10 +28,10 @@ module.exports = {
                 if (typeof user !== 'object') global.db.data.users[m.sender] = {}
                 if (user) {
                     if (!isNumber(user.exp)) user.exp = 0
-                    if (!isNumber(user.limit)) user.limit = 30
+                    if (!isNumber(user.limit)) user.limit = 25
                     if (!isNumber(user.joinlimit)) user.joinlimit = 1
-                    if (!isNumber(user.money)) user.money = 10000
-                    if (!isNumber(user.bank)) user.bank = 10000
+                    if (!isNumber(user.money)) user.money = 0
+                    if (!isNumber(user.bank)) user.bank = 0
                     if (!isNumber(user.lastclaim)) user.lastclaim = 0
                     if (!('registered' in user)) user.registered = false
                     if (!user.registered) {
@@ -275,11 +275,11 @@ module.exports = {
                     if (!isNumber(user.lastadventure)) user.lastadventure = 0
                 } else global.db.data.users[m.sender] = {
                     exp: 0,
-                    limit: 1000,
+                    limit: 25,
                     joinlimit: 1,
                     spammer: 0,
-                    money: 10000,
-                    bank: 10000,
+                    money: 0,
+                    bank: 0,
                     health: 100,
                     tiketcoin: 0,
                     healtmonster: 100,
@@ -727,7 +727,7 @@ module.exports = {
                     else m.exp += xp
                     if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
                      //   this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy*`, m)
-                        this.sendButton(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buyall* atau *${usedPrefix}hadiah*`, author, null, [['Buy Limit', '/buyall'], ['Hadiah', '/hadiah']], m)
+                        this.sendButton(m.chat, `Limit Anda Habis, Silahkan Beli Melalui *${usedPrefix}buyall* Atau *${usedPrefix}Hadiah*`, author, null, [['Buy Limit 1', '/buy 1'], ['Buy Limit 5', '/buy 5']], m)
                         continue // Limit habis
                     }
                     if (plugin.level > _user.level) {
@@ -782,7 +782,7 @@ module.exports = {
                                 console.error(e)
                             }
                         }
-                       if (m.limit) m.reply(+ m.limit + ' LIMIT USED')
+                       //if (m.limit) m.reply(+ m.limit + ' LIMIT USED')
                     }
                     break
                 }
@@ -921,17 +921,17 @@ conn.ws.on('CB:call', async (json) => {
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
-        owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
-        mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-        premium: '*Premium*\n1 Months *IDR 10000*\n1 Years *IDR 90000*\n\nHubungi *owner* kami..', 
-        banned: 'Perintah ini hanya untuk pengguna yang terbanned..',
-        group: 'Perintah ini hanya dapat digunakan di grup!',
-        private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
-        admin: 'Perintah ini hanya untuk *Admin* grup!',
-        botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
-        unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Manusia.16*',
-        restrict: 'Fitur ini di *disable*!'
+        rowner: '╭───━─━─━────╮\n├⎔ *AUTHOR ONLY*\n╰───━─━─━────╯',
+        owner: '╭───━─━─━────╮\n├⎔ *OWNER ONLY*\n╰───━─━─━────╯',
+        mods: '╭───━─━─━────╮\n├⎔ *MODER ONLY*\n╰───━─━─━────╯',
+        premium: '╭───━─━─━────╮\n├⎔ *PREMIUM ONLY*\n╰───━─━─━────╯', 
+        banned: '╭───━─━─━────╮\n├⎔ *BANNED ONLY*\n╰───━─━─━────╯',
+        group: '╭───━─━─━────╮\n├⎔ *GROUP ONLY*\n╰───━─━─━────╯\n\nhttps://chat.whatsapp.com/LrwRvvQWQFF9AZrdbJyLHw',
+        private: '╭───━─━─━────╮\n├⎔ *PRIVATE ONLY*\n╰───━─━─━────╯\n\nwa.me/6282253479547',
+        admin: '╭───━─━─━────╮\n├⎔ *ADMIN ONLY*\n╰───━─━─━────╯',
+        botAdmin: '╭───━─━─━────╮\n├⎔ *BOT ADMIN ONLY*\n╰───━─━─━────╯',
+        unreg: '*「 NOT REGISTERED 」\n\n*Silahkan Daftar Untuk Menggunakan Bot Ini Dengan Cara Mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Manusia.16*',
+        restrict: '╭───━─━─━────╮\n├⎔ *FEATURE OFF*\n╰───━─━─━────╯'
     }[type]
     if (msg) return m.reply(msg)
 }
